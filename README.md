@@ -2,9 +2,11 @@
 
 Agentic skills for Mixture-of-Experts engineering.
 
-GPU compute for all training and benchmark runs is provided by the
+The benchmark harness runs on an AMD MI300X provided by the
 **[AMD AI Developer Program](https://developer.amd.com/)** — see
 [Acknowledgments](#acknowledgments) and [CONTRIBUTORS.md](CONTRIBUTORS.md).
+The first benchmark wave did not use the GPU for inference or training: the
+agent under test ran through the OpenCode Zen API.
 
 ## What it is
 
@@ -125,21 +127,28 @@ design, hypotheses, tasks, metrics, and threats to validity.
 
 ## Roadmap
 
-Current phase: **Phase 1 — Skill framework**.
+Current phase: the first benchmark wave is complete; **Phase 2.5 — Real-training
+validation** is next.
 
 | Phase | Scope | Status |
 |-------|-------|--------|
 | **0. Research** | Literature review, skill-domain selection, SKILL.md format validation | Complete |
-| **1. Skill framework** | Loader + `moe-skills` CLI, five skills, skill spec, benchmark harness, four-arm research design | **Active** |
-| **2. Benchmark execution** | Headroom check, all four arms, statistical analysis, published results | Future |
+| **1. Skill framework** | Loader + `moe-skills` CLI, five skills, skill spec, benchmark harness, four-arm research design | Complete except two items |
+| **2. Benchmark execution** | Headroom check, all four arms, statistical analysis, published results | First wave complete |
+| **2.5. Real-training validation** | Launch the Task 2 and Task 4 proposals and measure them, instead of grading the proposal text | **Next** |
 | **3. Adapters** | HF / DeepSpeed / Megatron config generation and validation | Future |
 | **4. Agent orchestration** | Orchestrator and experiment-manager agents | Future |
 | **5. Hardening & release** | CI, coverage, packaging, docs polish, v1.0 | Future |
 
-Phase 1 is complete except for the run-harness work the four-arm design
-requires: Tasks 5 and 6, cost instrumentation (tool calls, tokens, wall-clock),
-search-query logging and retrieval caching for the search-enabled arms, and an
-independent review of the rubrics for skill-rubric circularity.
+The first wave, `run-20260808-0559` (four arms × six tasks × five seeds, 120
+runs), is published in
+[benchmarks/results/run-20260808-0559/summary.md](benchmarks/results/run-20260808-0559/summary.md).
+On the pre-registered endpoint the result is directional only: diagnosis
+accuracy rose from 0.44 to 0.474 with skills over a search-enabled agent
+(d = 1.60, uncorrected p = 0.023, n = 5, one of six per-task tests), and skills
+cost 2.64× the tokens. Tasks 2 and 4 were scored on the proposal text, not on a
+launched run. Phase 1 still lacks an independent review of the rubrics for
+skill-rubric circularity and folding the results back into the skills.
 
 See [ROADMAP.md](ROADMAP.md) for the per-item checklists.
 
@@ -155,11 +164,11 @@ See [ROADMAP.md](ROADMAP.md) for the per-item checklists.
 ## Acknowledgments
 
 **[AMD AI Developer Program](https://developer.amd.com/)** — main contributor,
-for providing free access to AMD GPU compute. The benchmark design calls for a
-four-arm, six-task, n≥5 experiment — on the order of 120 agent runs plus the
-training and profiling work behind Tasks 2 and 4 — and none of it could be
-tested or trained without that hardware. Every empirical result published here
-runs on AMD GPUs through the program.
+for providing free access to AMD GPU compute. The benchmark harness for the
+first wave (120 agent runs) ran on an MI300X through the program; the agent
+under test ran through an API, so that wave used no GPU inference or training.
+The training and profiling behind Tasks 2 and 4 (Phase 2.5) is planned for
+that hardware.
 
 This is an acknowledgment of compute support. The AMD AI Developer Program does
 not author, review, or endorse this work.

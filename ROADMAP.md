@@ -1,7 +1,8 @@
 # Roadmap
 
-Current phase: **Phase 1 — Skill framework** (active). Phase 0 is complete;
-Phases 2-5 are future work.
+Current phase: Phase 2's first benchmark wave is complete; **Phase 2.5 —
+Real-training validation** is next. Phase 0 is complete, Phase 1 has two open
+items, and Phases 3-5 are future work.
 
 ## Phase 0: Research
 
