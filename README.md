@@ -140,14 +140,19 @@ validation** is next.
 | **4. Agent orchestration** | Orchestrator and experiment-manager agents | Future |
 | **5. Hardening & release** | CI, coverage, packaging, docs polish, v1.0 | Future |
 
+The first wave (`run-20260808-0559`) ran before the independent review for
+skill-rubric circularity (an unchecked Phase 1 item in [ROADMAP.md](ROADMAP.md)).
+Its one gain, task 3 diagnosis accuracy 0.44 → 0.474 with skills over a
+search-enabled agent, depends on answer-key wording committed after all 120 runs
+had finished (`benchmarks/results/gt_task3.json`, `c3ff269`, with no earlier
+copy): task 3 is scored by word overlap with that key, so the gain is not
+evidence that skills help diagnosis.
+
 The first wave, `run-20260808-0559` (four arms × six tasks × five seeds, 120
 runs), is published in
 [benchmarks/results/run-20260808-0559/summary.md](benchmarks/results/run-20260808-0559/summary.md).
-On the pre-registered endpoint the result is directional only: diagnosis
-accuracy rose from 0.44 to 0.474 with skills over a search-enabled agent
-(d = 1.60, uncorrected p = 0.023, n = 5, one of six per-task tests), and skills
-cost 2.64× the tokens. Tasks 2 and 4 were scored on the proposal text, not on a
-launched run. Phase 1 still lacks an independent review of the rubrics for
+Skills cost 2.64× the tokens of the search-enabled agent. Tasks 2 and 4 were
+scored on the proposal text, not on a launched run. Phase 1 still lacks an independent review of the rubrics for
 skill-rubric circularity and folding the results back into the skills.
 
 See [ROADMAP.md](ROADMAP.md) for the per-item checklists.
